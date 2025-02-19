@@ -1,0 +1,4 @@
+alias sq="ssh -t narval 'watch sq -o \"\|%.10i\|%.45j\|%.8u\|%.8T\|%.10M\|%.6D\|%.16R\|\" --sort=+j'"
+alias ls='ls -lah'
+alias py='source ~/py/.env/bin/activate'
+alias disk-space='du -ch . | sort -h'
