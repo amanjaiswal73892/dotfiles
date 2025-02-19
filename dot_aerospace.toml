@@ -1,0 +1,305 @@
+# Place a copy of this config to ~/.aerospace.toml
+# After that, you can edit ~/.aerospace.toml to your liking
+
+# It's not necessary to copy all keys to your config.
+# If the key is missing in your config, "default-config.toml" will serve as a fallback
+
+# You can use it to add commands that run after login to macOS user session.
+# 'start-at-login' needs to be 'true' for 'after-login-command' to work
+# Available commands: https://nikitabobko.github.io/AeroSpace/commands
+after-login-command = []
+
+# You can use it to add commands that run after AeroSpace startup.
+# 'after-startup-command' is run after 'after-login-command'
+# Available commands : https://nikitabobko.github.io/AeroSpace/commands
+after-startup-command = []
+
+# Start AeroSpace at login
+start-at-login = true
+
+# Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
+enable-normalization-flatten-containers = true
+enable-normalization-opposite-orientation-for-nested-containers = true
+
+# See: https://nikitabobko.github.io/AeroSpace/guide#layouts
+# The 'accordion-padding' specifies the size of accordion padding
+# You can set 0 to disable the padding feature
+accordion-padding = 30
+
+# Possible values: tiles|accordion
+default-root-container-layout = 'tiles'
+
+# Possible values: horizontal|vertical|auto
+# 'auto' means: wide monitor (anything wider than high) gets horizontal orientation,
+#               tall monitor (anything higher than wide) gets vertical orientation
+default-root-container-orientation = 'auto'
+
+# Possible values: (qwerty|dvorak)
+# See https://nikitabobko.github.io/AeroSpace/guide#key-mapping
+key-mapping.preset = 'qwerty'
+
+# Mouse follows focus when focused monitor changes
+# Drop it from your config, if you don't like this behavior
+# See https://nikitabobko.github.io/AeroSpace/guide#on-focus-changed-callbacks
+# See https://nikitabobko.github.io/AeroSpace/commands#move-mouse
+on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+on-focus-changed = ['move-mouse window-lazy-center'] 
+
+# Gaps between windows (inner-*) and between monitor edges (outer-*).
+# Possible values:
+# - Constant:     gaps.outer.top = 8
+# - Per monitor:  gaps.outer.top = [{ monitor.main = 16 }, { monitor."some-pattern" = 32 }, 24]
+#                 In this example, 24 is a default value when there is no match.
+#                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
+#                 See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
+[gaps]
+inner.horizontal = 0
+inner.vertical =   0
+outer.left =       0
+outer.bottom =     0
+outer.top =        0
+outer.right =      0
+
+# 'main' binding mode declaration
+# See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
+# 'main' binding mode must be always presented
+[mode.main.binding]
+cmd-h = [] # Disable "hide application"
+cmd-alt-h = [] # Disable "hide others"
+# All possible keys:
+# - Letters.        a, b, c, ..., z
+# - Numbers.        0, 1, 2, ..., 9
+# - Keypad numbers. keypad0, keypad1, keypad2, ..., keypad9
+# - F-keys.         f1, f2, ..., f20
+# - Special keys.   minus, equal, period, comma, slash, backslash, quote, semicolon, backtick,
+#                   leftSquareBracket, rightSquareBracket, space, enter, esc, backspace, tab
+# - Keypad special. keypadClear, keypadDecimalMark, keypadDivide, keypadEnter, keypadEqual,
+#                   keypadMinus, keypadMultiply, keypadPlus
+# - Arrows.         left, down, up, right
+
+# All possible modifiers: cmd, alt, ctrl, shift
+
+# All possible commands: https://nikitabobko.github.io/AeroSpace/commands
+
+# See: https://nikitabobko.github.io/AeroSpace/commands#exec-and-forget
+# You can uncomment the following lines to open up terminal with alt + enter shortcut (like in i3)
+# alt-enter = '''exec-and-forget osascript -e '
+# tell application "Terminal"
+#     do script
+#     activate
+# end tell'
+# '''
+
+# alt is option key
+
+
+
+
+# See: https://nikitabobko.github.io/AeroSpace/commands#focus
+cmd-alt-left = 'focus left --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors'
+cmd-alt-down = 'focus down'
+cmd-alt-up = 'focus up'
+cmd-alt-right = 'focus right --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors'
+
+# See: https://nikitabobko.github.io/AeroSpace/commands#move
+# alt-shift-h = 'move left'
+# alt-shift-j = 'move down'
+# alt-shift-k = 'move up'
+# alt-shift-l = 'move right'
+ctrl-cmd-alt-up = 'move up'
+ctrl-cmd-alt-down = 'move down'
+ctrl-cmd-alt-left = 'move left'
+ctrl-cmd-alt-right = 'move right'
+
+
+# See: https://nikitabobko.github.io/AeroSpace/commands#resize
+alt-shift-minus = 'resize smart -50'
+alt-shift-equal = 'resize smart +50'
+alt-f = 'fullscreen'
+
+
+
+# See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
+alt-tab = 'exec-and-forget aerospace focus-back-and-forth || aerospace workspace-back-and-forth'
+
+# See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
+alt-shift-tab = ['move-node-to-monitor --wrap-around next', 'focus-back-and-forth']
+
+# Go to next non-empty workspace
+shift-ctrl-cmd-alt-right = 'exec-and-forget aerospace list-workspaces --monitor focused --empty no | aerospace workspace next'
+shift-ctrl-cmd-alt-left = 'exec-and-forget aerospace list-workspaces --monitor focused --empty no | aerospace workspace prev'
+
+
+# See: https://nikitabobko.github.io/AeroSpace/commands#workspace
+alt-1 = ['workspace Thesis-L','workspace Thesis-R',"""exec-and-forget open -n '/Applications/Microsoft Edge.app' --args --launch-workspace='c9d3524f-a2c7-4a88-80cb-d48a02ebd984'""" ]
+alt-2 = ['workspace MCHP-L','workspace MCHP-R']
+alt-3 = ['workspace SCPP-L','workspace SCPP-R',"""exec-and-forget open -n '/Applications/Microsoft Edge.app' --args --launch-workspace='307e8482-6283-4a1e-b16e-f1d5116797bf'"""]
+alt-4 = ['workspace Learn-L','workspace Learn-4']
+alt-5 = ['workspace L5','workspace R5']
+alt-6 = ['workspace L6','workspace R6']
+alt-7 = ['workspace L7','workspace R7']
+alt-8 = ['workspace L8','workspace R8']
+alt-9 = ['workspace L9','workspace R9']
+# changes to browser and opens a new window
+alt-b = ['workspace Browser','''exec-and-forget osascript -e' 
+tell application "Microsoft Edge"
+	activate
+	set CurWin to make new window
+	set visible of CurWin to true
+end tell'
+''']
+alt-c = 'workspace Chill'
+# changes to mail and opens a new browser window with if not open already
+alt-m = ['workspace Mail','''exec-and-forget aerospace list-windows --workspace Mail | grep 'Microsoft Edge' || osascript /Applications/open-emails.scpt''']
+alt-p = ['workspace Plan','exec-and-forget open  "/Applications/Microsoft To Do.app"','exec-and-forget aerospace trigger-binding --mode main alt-m']
+alt-v = 'workspace Code'
+alt-t = ['workspace Teams','exec-and-forget open "/Applications/Microsoft Teams classic.app"']
+# alt-a = 'workspace A' # In your config, you can drop workspace bindings that you don't need
+# alt-d = 'workspace D'
+# alt-e = 'workspace E'
+# # alt-f = 'workspace F'
+# alt-g = 'workspace G'
+# alt-i = 'workspace I'
+# alt-n = 'workspace N'
+# alt-o = 'workspace O'
+# alt-q = 'workspace Q'
+# alt-r = 'workspace R'
+# alt-s = 'workspace S'
+# # alt-t = 'workspace T'
+# alt-u = 'workspace U'
+# # alt-w = 'workspace W'
+# alt-x = 'workspace X'
+# alt-y = 'workspace Y'
+# alt-z = 'workspace Z'
+
+# See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
+alt-shift-1 = 'move-node-to-workspace Thesis-R'
+alt-shift-2 = 'move-node-to-workspace MCHP-R'
+alt-shift-3 = 'move-node-to-workspace SCPP-R'
+alt-shift-4 = 'move-node-to-workspace Learn-4'
+alt-shift-5 = 'move-node-to-workspace R5'
+alt-shift-6 = 'move-node-to-workspace R6'
+alt-shift-7 = 'move-node-to-workspace R7'
+alt-shift-8 = 'move-node-to-workspace R8'
+alt-shift-9 = 'move-node-to-workspace R9'
+alt-shift-b = 'move-node-to-workspace Browser'
+alt-shift-c = 'move-node-to-workspace Chill'
+alt-shift-m = 'move-node-to-workspace Mail'
+alt-shift-p = 'move-node-to-workspace Plan'
+alt-shift-v = 'move-node-to-workspace Code'
+alt-shift-t = 'move-node-to-workspace Teams'
+# alt-shift-a = 'move-node-to-workspace A'
+# alt-shift-d = 'move-node-to-workspace D'
+# alt-shift-e = 'move-node-to-workspace E'
+# # alt-shift-f = 'move-node-to-workspace F'
+# alt-shift-g = 'move-node-to-workspace G'
+# alt-shift-i = 'move-node-to-workspace I'
+# alt-shift-n = 'move-node-to-workspace N'
+# alt-shift-o = 'move-node-to-workspace O'
+# alt-shift-q = 'move-node-to-workspace Q'
+# alt-shift-r = 'move-node-to-workspace R'
+# alt-shift-s = 'move-node-to-workspace S'
+# alt-shift-t = 'move-node-to-workspace T'
+# alt-shift-u = 'move-node-to-workspace U'
+# alt-shift-w = 'move-node-to-workspace W'
+# alt-shift-x = 'move-node-to-workspace X'
+# alt-shift-y = 'move-node-to-workspace Y'
+# alt-shift-z = 'move-node-to-workspace Z'
+
+
+# See: https://nikitabobko.github.io/AeroSpace/commands#mode
+alt-shift-semicolon = 'mode service'
+alt-a = 'mode launch'
+alt-w = 'mode window'
+# Automations
+
+[[on-window-detected]]
+if.app-id = 'com.microsoft.to-do-mac'
+run = 'move-node-to-workspace Plan'
+[[on-window-detected]]
+if.app-id = 'com.microsoft.edgemac.app.faolnafnngnfdaknnbpnkhgohbobgegn'
+run = 'move-node-to-workspace Mail'
+# [[on-window-detected]] # alt-v should check if the current window as vs code or not and switch to it.
+# if.app-id = 'com.microsoft.VSCode'
+# run = 'move-node-to-workspace Code'
+[[on-window-detected]]
+if.app-id = 'com.microsoft.teams'
+run = 'move-node-to-workspace Teams'
+[[on-window-detected]]
+if.app-id = 'com.apple.finder'
+check-further-callbacks = true
+run = 'layout floating'
+[[on-window-detected]]
+if.app-id = 'company.thebrowser.Browser'
+run = 'layout floating'
+
+
+[workspace-to-monitor-force-assignment]
+Thesis-L = '^built-in retina display$'
+MCHP-L = '^built-in retina display$'
+SCPP-L = '^built-in retina display$'
+Learn-L = '^built-in retina display$'
+L5 = '^built-in retina display$'
+L6 = '^built-in retina display$'
+L7 = '^built-in retina display$'
+L8 = '^built-in retina display$'
+L9 = '^built-in retina display$'
+
+Thesis-R = '2'
+MCHP-R = '2'
+SCPP-R = '2'
+Learn-4 = '2'
+R5 = '2'
+R6 = '2'
+R7 = '2'
+R8 = '2'
+R9 = '2'
+Mail = '2'
+Plan = '^built-in retina display$'
+Teams = '1'
+
+
+
+
+# 'service' binding mode declaration.
+# See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
+[mode.service.binding]
+esc = ['reload-config', 'mode main']
+r = ['flatten-workspace-tree', 'mode main'] # reset layout
+#s = ['layout sticky tiling', 'mode main'] # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
+f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
+backspace = ['close-all-windows-but-current', 'mode main']
+
+left = ['join-with left']
+down = ['join-with down']
+up = ['join-with up']
+right = ['join-with right']
+
+
+[mode.launch.binding]
+esc = ['reload-config', 'mode main']
+e = ['''exec-and-forget osascript -e' 
+tell application "Microsoft Edge"
+	activate
+	set CurWin to make new window
+	set visible of CurWin to true
+end tell'
+''','mode main']
+f = ["""exec-and-forget open '/Users/amanjaiswal/Downloads'""",'mode main']
+t = ['''exec-and-forget open "/System/Applications/Utilities/Terminal.app"''','mode main']
+a = ['''exec-and-forget open "/Applications/Arc.app"''','mode main']
+z = ['''exec-and-forget open -n "/Applications/Zotero.app"''','mode main']
+s = ['''exec-and-forget open -n "/Applications/Spotify.app"''','mode main']
+
+[mode.window.binding]
+esc = ['reload-config', 'mode main']
+enter = ['flatten-workspace-tree', 'mode main']
+left = ['move-node-to-monitor --wrap-around prev', 'focus-back-and-forth','mode main']
+right = ['move-node-to-monitor --wrap-around next', 'focus-back-and-forth','mode main']
+# See: https://nikitabobko.github.io/AeroSpace/commands#layout
+t = 'layout tiles horizontal vertical'
+a = 'layout accordion horizontal vertical'
+alt-left = ['join-with left']
+alt-down = ['join-with down']
+alt-up = ['join-with up']
+alt-right = ['join-with right']
